@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="userbase::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title th:text="${title}">Insert title here</title>
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+	integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+	crossorigin="anonymous">
+</head>
+<body>
+	<section class="pt-4 py-4">
+		<div class="card mr-3 pt-3">
+			<div th:if="${session.message}" class="container mt-3">
+				<div th:classappend="${session.message.type}"
+					class="alert text-center" role="alert"
+					th:text="${session.message.content}"></div>
+				<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+			</div>
+			<div class="card-body">
+				<h1 class="text-center">Scanner</h1>
+				<div class="container-fluid mt-1">
+					<div class="row">
+						<div class="col-md-10 offset-md-1">
+							<form action="#" th:object="${userdb}"
+								enctype="multipart/form-data" method="post"
+								th:action="@{/user/process-scan}" class="mt-2">
+								<!-- photo -->
+
+								<div class="custom-file mt-3 text-center">
+									<label class="text-info text-uppercase mt-3" style="font-size: 18px;">Upload Photo</label> <br> <input type="file"
+										name="profileImage">
+								</div>
+								<div id="progressid" style="display: none;">
+								<div class="progress my-2" >
+									<div
+										class="progress-bar progress-bar-striped progress-bar-animated"
+										role="progressbar" aria-valuenow="100" aria-valuemin="0"
+										aria-valuemax="100" style="width: 100%"></div>
+								</div>
+									<div class="container text-center my-3">
+											<h3><span class="text-primary">Extracting... <i class="fas fa-spinner fa-pulse"></i></span></h3>
+									</div>	
+								</div>
+								<div class="container text-center mt-3 mb-3" id="btn">
+									<button class="btn btn-outline-primary" type="submit" onclick="progress();">Extract</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+		function progress(){
+			 var x = document.getElementById("progressid");
+			  if (x.style.display === "none") {
+			    x.style.display = "block";
+			    document.getElementById("btn").style.display = "none";
+			  } else {
+			    x.style.display = "none";
+			    document.getElementById("btn").style.display = "block";
+			  }
+		}
+$(document).ready(()=>{
+	$(".item").removeClass("active1");
+	$("#add-link").addClass("active1");
+});
+</script>
+	</section>
+	<script type="text/javascript" th:src="@{/JS/script.js}"></script>
+</body>
+</html>

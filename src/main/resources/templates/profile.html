@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="userbase::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title th:text="${title}">Insert title here</title>
+</head>
+<body >
+	<section >
+	<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+		<div class="container my-4">
+			<div class="card ">
+				<div class="card-body text-center">
+				<div>
+						<form th:action="@{/user/update-contact-user}" method="get" class="mt-2" style="padding-left: 95%;">
+			      	<button type="submit" class="btn btn-outline-success btn-sm"><i class="fas fa-edit"></i></button>
+			      	</form>
+					</div>
+					<div th:if="${user.image}!='contact.png'">
+						<img alt="profile photo" src="#" class="profile_picture"
+							th:src="@{'/img/'+${user.id}+${user.image}}">
+					</div>
+					<div th:if="${user.image}=='contact.png'">
+						<img alt="profile photo" src="#" class="profile_picture"
+							th:src="@{'/img/contact.png'}">
+					</div>
+
+					<table class="table table-hover table-xl mt-4">
+						<tbody>
+						<tr>
+								<th scope="row">Id</th>
+								<td th:text="'TDK_SIS_'+${user.id}"></td>
+							</tr>
+						
+							<tr>
+								<th scope="row">Name</th>
+								<td th:text="${user.name}"></td>
+							</tr>
+							<tr>
+								<th scope="row">Email</th>
+								<td th:text="${user.email}"></td>
+							</tr>
+							<tr>
+								<th scope="row">Role</th>
+								<td th:text="${user.role}"></td>
+							</tr>
+		                    <tr>
+								<th scope="row">Total Images Scanned</th>
+								<td th:text="${total}"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+		</div>
+		<script>
+$(document).ready(()=>{
+	$(".item").removeClass("active1");
+	$("#profile-link").addClass("active1");
+});
+</script>
+	</section>
+</body>
+</html>
