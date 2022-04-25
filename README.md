@@ -3,8 +3,6 @@
 
 Came across a banner or any picture with text or a visiting card? Would you like to store the information in that image as text for future use? It is possible by extracting the text from the image. This application helps you do that and stores it in a very secured environment and manages the data with maximum efficiency.
 
-check out the application working here :
-https://drive.google.com/file/d/1PBWlr-sRpbCdFLlek7U8SQB_3RmNLdci/view?usp=sharing
 
 Technologies implemented:
   1. Spring Boot
